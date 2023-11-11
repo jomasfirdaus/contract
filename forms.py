@@ -31,6 +31,11 @@ class ContractForm(forms.ModelForm):
             ),
 
             Row(
+                Column('division', css_class='col-md-4'),
+                Column('department', css_class='col-md-4'),
+            ),
+
+            Row(
                 Column('start_date', css_class='col-md-6'),
                 Column('end_date', css_class='col-md-6'),
             ),

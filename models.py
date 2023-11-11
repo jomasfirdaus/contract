@@ -43,6 +43,8 @@ class Contract(models.Model):
 	contract_type = models.ForeignKey(ContractType, on_delete=models.CASCADE, null=True, blank=True)
 	grade = models.ForeignKey(Grade, on_delete=models.CASCADE, null=True, blank=True)
 	position = models.ForeignKey(Position, on_delete=models.CASCADE, null=True)
+	division = models.ForeignKey(Division, on_delete=models.CASCADE, null=True)
+	department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
 	nivel = models.ForeignKey(Nivel, on_delete=models.CASCADE, null=True)
 	start_date = models.DateField(null=True, blank=True)
 	end_date = models.DateField(null=True, blank=True)
