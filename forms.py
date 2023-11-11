@@ -26,12 +26,11 @@ class ContractForm(forms.ModelForm):
 
             Row(
                 Column('grade', css_class='col-md-4'),
-                Column('position', css_class='col-md-4'),
                 Column('nivel', css_class='col-md-4'),
             ),
 
             Row(
-                Column('division', css_class='col-md-4'),
+                Column('position', css_class='col-md-4'),
                 Column('department', css_class='col-md-4'),
             ),
 
@@ -42,6 +41,7 @@ class ContractForm(forms.ModelForm):
             
             Row(
                 Column('file', css_class='col-md-6'),
+                Column('is_executive', css_class='col-md-6'),
             ),
 
             Div(
