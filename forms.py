@@ -31,8 +31,12 @@ class ContractForm(forms.ModelForm):
 
             Row(
                 Column('branch', css_class='col-md-4'),
-                Column('position', css_class='col-md-4'),
                 Column('department', css_class='col-md-4'),
+            ),
+
+            Row(
+                Column('position', css_class='col-md-4'),
+                Column('funsaun', css_class='col-md-4'),
             ),
 
             Row(

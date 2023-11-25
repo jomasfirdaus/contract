@@ -3,7 +3,7 @@ from django.db import models
 from django.core.validators import FileExtensionValidator
 from django.contrib.auth.models import User
 from custom.models import *
-from employee.models import *
+# from employee.models import EmployeeUser
 
 # Create your models here.
 
@@ -39,12 +39,13 @@ class ContractType(models.Model):
 
 
 class Contract(models.Model):
-	employeeuser = models.ForeignKey(EmployeeUser, null=True, blank=True, on_delete=models.CASCADE)
+	employeeuser = models.ForeignKey("employee.EmployeeUser", null=True, blank=True, on_delete=models.CASCADE)
 	contract_type = models.ForeignKey(ContractType, on_delete=models.CASCADE, null=True, blank=True)
 	grade = models.ForeignKey(Grade, on_delete=models.CASCADE, null=True, blank=True)
 	branch = models.ForeignKey(Branch, on_delete=models.CASCADE, default=1, null=True, blank=True)
 	position = models.ForeignKey(Position, on_delete=models.CASCADE, null=True)
-	department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
+	funsaun = models.ForeignKey(Funsaun, on_delete=models.CASCADE, null=True)
+	department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True, blank=True)
 	nivel = models.ForeignKey(Nivel, on_delete=models.CASCADE, null=True)
 	start_date = models.DateField(null=True, blank=True)
 	end_date = models.DateField(null=True, blank=True)
@@ -82,7 +83,7 @@ class Contract(models.Model):
 		verbose_name_plural='1-Data-Contract-Contract'
 
 class EmpSalary(models.Model):
-	employee = models.ForeignKey(Employee, on_delete=models.CASCADE, null=True, related_name='empsalary')
+	employee = models.ForeignKey("employee.EmployeeUser", on_delete=models.CASCADE, null=True, related_name='empsalary')
 	contract = models.OneToOneField(Contract, on_delete=models.CASCADE, null=True, blank=True, related_name='empsalary')
 	amount = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True)
 	is_active = models.BooleanField(default=True, blank=True)
@@ -112,7 +113,7 @@ class EmpSalary(models.Model):
 
 
 class EmpPlacement(models.Model):
-	employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+	employee = models.ForeignKey("employee.EmployeeUser", on_delete=models.CASCADE)
 	position = models.ForeignKey(Position, on_delete=models.CASCADE, null=True, blank=True)	
 	department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True, blank=True)
 	start_date = models.DateField(null=True, blank=True)
