@@ -25,6 +25,11 @@ class ContractForm(forms.ModelForm):
             ),
 
             Row(
+                Column('donor', css_class='col-md-4'),
+                Column('project', css_class='col-md-4'),
+            ),
+
+            Row(
                 Column('grade', css_class='col-md-4'),
                 Column('nivel', css_class='col-md-4'),
             ),
@@ -59,6 +64,8 @@ class ContractForm(forms.ModelForm):
 
         # Add CSS classes to form fields if needed
         self.fields['contract_type'].widget.attrs['class'] = 'form-control'
+        self.fields['donor'].widget.attrs['class'] = 'form-control'
+        self.fields['project'].widget.attrs['class'] = 'form-control'
         self.fields['grade'].widget.attrs['class'] = 'form-control'
         self.fields['branch'].widget.attrs['class'] = 'form-control'
         self.fields['position'].widget.attrs['class'] = 'form-control'

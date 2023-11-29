@@ -41,6 +41,8 @@ class ContractType(models.Model):
 class Contract(models.Model):
 	employeeuser = models.ForeignKey("employee.EmployeeUser", null=True, blank=True, on_delete=models.CASCADE)
 	contract_type = models.ForeignKey(ContractType, on_delete=models.CASCADE, null=True, blank=True)
+	donor = models.ForeignKey(Donor, on_delete=models.CASCADE, null=True, blank=True)
+	project = models.ForeignKey(Project, on_delete=models.CASCADE, null=True, blank=True)
 	grade = models.ForeignKey(Grade, on_delete=models.CASCADE, null=True, blank=True)
 	branch = models.ForeignKey(Branch, on_delete=models.CASCADE, default=1, null=True, blank=True)
 	position = models.ForeignKey(Position, on_delete=models.CASCADE, null=True)
@@ -83,7 +85,6 @@ class Contract(models.Model):
 		verbose_name_plural='1-Data-Contract-Contract'
 
 class EmpSalary(models.Model):
-	employee = models.ForeignKey("employee.EmployeeUser", on_delete=models.CASCADE, null=True, related_name='empsalary')
 	contract = models.OneToOneField(Contract, on_delete=models.CASCADE, null=True, blank=True, related_name='empsalary')
 	amount = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True)
 	is_active = models.BooleanField(default=True, blank=True)
