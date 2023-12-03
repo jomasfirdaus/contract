@@ -73,4 +73,41 @@ class ContractForm(forms.ModelForm):
         self.fields['start_date'].widget.input_type = 'date'
         self.fields['end_date'].widget.input_type = 'date'
         self.fields['file'].widget.attrs['class'] = 'form-control'
-  
+
+
+class TerminateContractForm(forms.ModelForm):
+    class Meta:
+        model = Contract
+        fields = 'terminate_date', 'reason', 'file_end'  # You can specify the fields you want to include if needed
+
+    def __init__(self, *args, **kwargs):
+        super(TerminateContractForm, self).__init__(*args, **kwargs)
+
+        # Create a form helper and specify the layout
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+
+            Row(
+                Column('terminate_date', css_class='col-md-4'),
+            ),
+
+            Row(
+                Column('reason', css_class='col-md-4'),
+            ),
+
+            Row(
+                Column('file_end', css_class='col-md-4'),
+            ),
+
+            Div(
+                Button('cancel', 'Kansela', css_class='btn-secondary btn-sm', onclick="window.history.back();"),
+                Submit('post', 'Submete', css_class='btn-primary btn-sm'),
+            
+                css_class='text-right',
+            ),
+        )
+
+        # Add CSS classes to form fields if needed
+        self.fields['terminate_date'].widget.input_type = 'date'
+        self.fields['reason'].widget.attrs['class'] = 'form-control'
+        self.fields['file_end'].widget.attrs['class'] = 'form-control'

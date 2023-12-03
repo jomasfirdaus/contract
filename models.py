@@ -3,6 +3,7 @@ from django.db import models
 from django.core.validators import FileExtensionValidator
 from django.contrib.auth.models import User
 from custom.models import *
+from employee.models import EmployeeUser
 # from employee.models import EmployeeUser
 
 # Create your models here.
@@ -39,7 +40,7 @@ class ContractType(models.Model):
 
 
 class Contract(models.Model):
-	employeeuser = models.ForeignKey("employee.EmployeeUser", null=True, blank=True, on_delete=models.CASCADE)
+	employeeuser = models.ForeignKey(EmployeeUser, related_name="Contractemployeeuser", null=True, blank=True, on_delete=models.CASCADE)
 	contract_type = models.ForeignKey(ContractType, on_delete=models.CASCADE, null=True, blank=True)
 	donor = models.ForeignKey(Donor, on_delete=models.CASCADE, null=True, blank=True)
 	project = models.ForeignKey(Project, on_delete=models.CASCADE, null=True, blank=True)
